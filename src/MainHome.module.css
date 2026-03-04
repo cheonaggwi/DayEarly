@@ -1,0 +1,15 @@
+.ToDay {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ImportExport {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

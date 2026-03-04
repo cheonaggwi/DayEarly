@@ -1,0 +1,27 @@
+.MainBoxGrid{
+    height: 100dvh;
+    width: 100dvw;
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+}
+
+.MainBox {
+    display: grid;
+    height: auto;
+    width: auto;
+    margin: 0 100px;
+}
+
+.Top {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+}
+
+.Top button {
+    height: 100px;
+    width: 100px;
+}
+
+.MainBoxGrid div{
+    border: 1px black solid;
+}
