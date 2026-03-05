@@ -5,7 +5,7 @@ import MonthPage from './MonthPage';
 import DayPage from './DayPage';
 import DiaryPage from './DiaryPage';
 
-import './WorldStyle.css'
+import './cssfile/WorldStyle.css'
 
 export default function App() {
 

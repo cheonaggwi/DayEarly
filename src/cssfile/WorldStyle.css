@@ -25,3 +25,7 @@
 .MainBoxGrid div{
     border: 1px black solid;
 }
+
+button:hover {
+    cursor: pointer;
+}
