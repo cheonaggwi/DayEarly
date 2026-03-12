@@ -3,6 +3,16 @@ import { useState } from "react";
 
 import styles from './cssfile/YearPage.module.css';
 
+function ToDayWhat(){
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    const dateNumber = Number(`${year}${month}${day}`);
+    return [year, month, day, dateNumber];
+}
+
 const ButtonCssList = [
     {fontSize: '12.5px',
     top: '-10%'},
@@ -24,6 +34,8 @@ const ButtonCssList = [
     top: '110%'}]
 
 export default function YearPage() {
+
+    const DayDatas: (String | number)[] = ToDayWhat()
 
     const { id } = useParams();
     const [directYear , setDirectYear] = useState<number>(Number(id));
@@ -57,6 +69,8 @@ export default function YearPage() {
             setDirectYear(directYear+newYear);
         }, 300);
 
+        navigate(`/year/${directYear+newYear}`, { replace: true });
+
         return newYear;
     };
 
@@ -73,7 +87,7 @@ export default function YearPage() {
                     <button className={`${styles.YearButtonSleep} Buttons`} data-position='1'>{String(directYear-3)}</button>
                     <button className={`${styles.YearButtonSmall} Buttons`} data-position='2' onClick={()=>handleDirectYear(-2)}>{String(directYear-2)}</button>
                     <button className={`${styles.YearButtonMidle} Buttons`} data-position='3' onClick={()=>handleDirectYear(-1)}>{String(directYear-1)}</button>
-                    <button className={`${styles.YearButtonBig} Buttons`} data-position='4' onClick={()=>navigate(`/month/${directYear}`)}>{String(directYear)}</button>
+                    <button className={`${styles.YearButtonBig} Buttons`} data-position='4' onClick={()=>navigate(`/month/${directYear}-1`)}>{String(directYear)}</button>
                     <button className={`${styles.YearButtonMidle} Buttons`} data-position='5' onClick={()=>handleDirectYear(1)}>{String(directYear+1)}</button>
                     <button className={`${styles.YearButtonSmall} Buttons`} data-position='6' onClick={()=>handleDirectYear(2)}>{String(directYear+2)}</button>
                     <button className={`${styles.YearButtonSleep} Buttons`} data-position='7'>{String(directYear+3)}</button>

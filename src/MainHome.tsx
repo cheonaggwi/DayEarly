@@ -18,7 +18,7 @@ export default function MainHome() {
 
     let { id } = useParams();
     if (id == null){
-        id = `diary-${DayDatas[3]}`
+        id = `diary-${DayDatas[0]}-${DayDatas[1]}-${DayDatas[2]}`
     }
     let LastPage = id.split("-")
 
@@ -30,15 +30,15 @@ export default function MainHome() {
             <header className='Top'>
                 <div className='그리드용빈칸'></div>
                 <div className={styles['Title']}>제목이 들어갑니다~</div>
-                <button onClick={()=>navigate(`/${LastPage[0]}/${LastPage[1]}`)}>메인 나가는 로고</button>
+                <button onClick={()=>navigate(`/${LastPage[0]}/${LastPage.slice(1).join('-')}`)}>메인 나가는 로고</button>
             </header>
             <main className='MainBox'>
                 <div className={styles['ToDay']}>
                     <button onClick={()=>navigate(`/year/${DayDatas[0]}`)}>{DayDatas[0]}</button>
-                    <button onClick={()=>navigate(`/month/${DayDatas[1]}`)}>{DayDatas[1]}</button>
-                    <button onClick={()=>navigate(`/day/${DayDatas[2]}`)}>{DayDatas[2]}</button>
+                    <button onClick={()=>navigate(`/month/${DayDatas[0]}-${DayDatas[1]}`)}>{DayDatas[1]}</button>
+                    <button onClick={()=>navigate(`/day/${DayDatas[0]}-${DayDatas[1]}-${DayDatas[2]}`)}>{DayDatas[2]}</button>
                 </div>
-                <button onClick={()=>navigate(`/diary/${DayDatas[3]}`)}>오늘의 일기 쓰기</button>
+                <button onClick={()=>navigate(`/diary/${DayDatas[0]}-${DayDatas[1]}-${DayDatas[2]}`)}>오늘의 일기 쓰기</button>
                 <div className={styles['ImportExport']}>
                     <button>불러오기</button>
                     <button>내보내기</button>
