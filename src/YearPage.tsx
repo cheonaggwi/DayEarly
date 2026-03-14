@@ -78,7 +78,7 @@ export default function YearPage() {
         <div className='MainBoxGrid'>
             <header className='Top'>
                 <button onClick={()=>navigate(`/main/year-${directYear}`)}>메인 가는 로고</button>
-                <div className='그리드용빈칸'></div>
+                <div className={styles['Title']}>{directYear}년</div>
                 <div className='그리드용빈칸'></div>
             </header>
             <main className='MainBox'>
