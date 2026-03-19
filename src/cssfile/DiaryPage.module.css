@@ -5,13 +5,26 @@
     grid-template-columns: 100px 1fr 3fr 1fr 100px;
 }
 
-.MainGrid{
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+.MessageGrid{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.NewMessageMaking{
+    width: 100%;
+    height: 100%;
 }
 
 .Title {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.MessageAddButton{
+    border: none;
+    background-color: black;
 }

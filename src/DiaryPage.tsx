@@ -15,6 +15,8 @@ function ToDayWhat(){
 
 export default function DiaryPage() {
 
+    // 날짜 계산 및 날짜 조작 버튼
+
     const DayDatas: (String | number)[] = ToDayWhat()
 
     let { id } = useParams();
@@ -65,9 +67,61 @@ export default function DiaryPage() {
             newDay = 1;
         }
         setDirectDay(newDay);
+        setWatchMake(0);
         
         navigate(`/diary/${newYear}-${newMonth}-${newDay}`, { replace: true });
     }
+
+    // 메인 박스 안에 들어갈 XTML 정의
+
+    const [watchMake , setWatchMake] = useState<number>(0);
+    
+    let mainBoxXTML;
+
+    localStorage.setItem(`${directYear}${directMonth}${directDay}`, `${directYear}###${directMonth}###${directDay}`);
+
+    let diaryText:string|null = localStorage.getItem(`${directYear}${directMonth}${directDay}`);
+    let messageList = [];
+    let count = 0;
+
+    if(watchMake === 0){
+        if(diaryText !== null){
+            for(let i = 1; i-1 < diaryText.split("###").length; i ++){
+                count ++ ;
+                messageList.push(<button key={i} onClick={()=>setWatchMake(i)}>{diaryText.split("###")[i-1]}</button>);
+                
+            }
+        }
+        for(let i=count;i<10;i++){
+            count ++ ;
+            messageList.push(<button className={styles["MessageAddButton"]} key={count} onClick={()=>setWatchMake(-1)}>+</button>);
+
+        }
+        
+        mainBoxXTML = 
+            <div className={styles['MessageGrid']}>{messageList}</div>
+        ;
+
+    }else if(watchMake === -1){
+        mainBoxXTML = 
+        <div className={styles['NewMessageMaking']}><input></input></div>
+        ;
+        
+    }else{
+        if(diaryText !== null){
+            mainBoxXTML = 
+            <div className={styles['NewMessageMaking']}><input defaultValue={diaryText.split("###")[watchMake-1]}></input></div>
+            ;
+        }
+        
+    }
+
+    // localStorage.setItem(`${directYear}${directMonth}${directDay}`, "일기 내용입니다");
+    // {localStorage.getItem("diary_20260303")}
+    // localStorage.removeItem("diary_20260303");
+    // localStorage.clear();
+
+    
 
     return (
         <div className='MainBoxGrid'>
@@ -76,7 +130,8 @@ export default function DiaryPage() {
                 <div className={styles['Title']}>{directYear}년 {directMonth}월 {directDay}일</div>
                 <div className='그리드용빈칸'></div>
             </header>
-            <main className='MainBox'>
+            <main className={`MainBox`}>
+                {mainBoxXTML}
             </main>
             <footer className='Bottom'>
                 <div className={styles['BottomGrid']}>
