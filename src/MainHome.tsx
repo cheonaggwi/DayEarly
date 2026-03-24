@@ -43,7 +43,7 @@ export default function MainHome() {
                     <button>불러오기</button>
                     <button>내보내기</button>
                 </div>
-                <button>데이터 삭제</button>
+                <button onClick={()=>localStorage.clear()}>데이터 삭제</button>
             </main>
             <footer className='Bottom'></footer>
         </div>

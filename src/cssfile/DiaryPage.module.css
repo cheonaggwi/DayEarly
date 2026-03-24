@@ -14,8 +14,72 @@
 }
 
 .NewMessageMaking{
+    position: relative;
     width: 100%;
     height: 100%;
+}
+
+.NewMessageInput{
+    position: absolute;
+    width: 50%;
+    height: 40%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.NewMessageRange{
+    position: absolute;
+    width: 40%;
+    height: 5%;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.NewMessageNumber{
+    position: absolute;
+    width: 2%;
+    height: 5%;
+    top: 25%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+}
+
+.NewMessageSelect{
+    position: absolute;
+    width: 4%;
+    height: 5%;
+    top: 25%;
+    left: 26.5%;
+    transform: translate(-50%, -50%);
+}
+
+.NewMessageBackButton{
+    position: absolute;
+    width: 3%;
+    height: 5%;
+    top: 5%;
+    left: 3%;
+    transform: translate(-50%, -50%);
+}
+
+.MessageSaveButton{
+    position: absolute;
+    width: 5%;
+    height: 5%;
+    top: 80%;
+    left: 67%;
+    transform: translate(-50%, -50%);
+}
+
+.MessageRemoveButton{
+    position: absolute;
+    width: 5%;
+    height: 5%;
+    top: 80%;
+    left: 72.5%;
+    transform: translate(-50%, -50%);
 }
 
 .Title {
