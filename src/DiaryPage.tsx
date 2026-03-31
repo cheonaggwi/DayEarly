@@ -100,7 +100,7 @@ export default function DiaryPage() {
     function messageSave( rate:number, page:number, emotion:string){
         const el = document.getElementById("newMessageInput") as HTMLInputElement;
         const value = el?.value;
-        if(diaryText !== null){
+        if(diaryText !== null && diaryText !== ""){
             if(page === -1){
                 localStorage.setItem(`${directYear}${directMonth}${directDay}`, `${diaryText}###${emotion}#?#${rate}#?#${value}`);
             } else{
@@ -118,7 +118,31 @@ export default function DiaryPage() {
                 localStorage.setItem(`${directYear}${directMonth}${directDay}`, `${TextList}`);
             }
         }else{
-            localStorage.setItem(`${directYear}${directMonth}${directDay}`, `${emotion}#?#${rate}#?#${value}`);}
+            localStorage.setItem(`${directYear}${directMonth}${directDay}`, `${emotion}#?#${rate}#?#${value}`);
+        }
+        setWatchMake(0);
+    }
+
+    function messageRemove(page:number){
+        let TextList = '';
+        if(diaryText !== null){
+            for(let i = 1; i-1 < diaryText.split("###").length; i ++){
+                if(i !== page){
+                    TextList += `${diaryText.split("###")[i-1]}`;
+                }
+                if(i < diaryText.split("###").length && i !== page){
+                    TextList += "###";
+                }
+            }
+            
+            if(TextList === ""){
+                localStorage.removeItem(`${directYear}${directMonth}${directDay}`);
+            } else{
+                localStorage.setItem(`${directYear}${directMonth}${directDay}`, `${TextList}`);
+            }
+        }
+
+        setWatchMake(0);
     }
 
     if(watchMake === 0){
@@ -126,7 +150,6 @@ export default function DiaryPage() {
             for(let i = 1; i-1 < diaryText.split("###").length; i ++){
                 count ++ ;
                 messageList.push(<button key={i} onClick={()=>messageEditPage(i)}>{diaryText.split("###")[i-1].split("#?#")[2]}</button>);
-                
             }
         }
         for(let i=count;i<10;i++){
@@ -157,7 +180,9 @@ export default function DiaryPage() {
                 <input className={styles['NewMessageNumber']} id="newMessageNumber" type="number" min="1" max="9" value={emotionRate} onChange={(e) => setEmotionRate(parseInt(e.target.value))} />
                 <input className={styles['NewMessageInput']} id="newMessageInput" defaultValue={watchMake !== -1 && diaryText ? diaryText.split("###")[watchMake-1].split("#?#")[2] : ""} />
                 <button className={styles['MessageSaveButton']} onClick={()=>messageSave( emotionRate, watchMake, emotion)}>저장</button>
-                <button className={styles['MessageRemoveButton']}>삭제</button>
+                {watchMake !== -1 ? 
+                    <button className={styles['MessageRemoveButton']} onClick={()=>messageRemove(watchMake)}>삭제</button> : null
+                }
             </div>
             ;
     }
